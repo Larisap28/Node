@@ -1,5 +1,6 @@
 var express = require('express'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser');
 
 var db = mongoose.connect('mongodb://localhost/booksAPI'); //open a connection to the database
 
@@ -8,25 +9,23 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-var bookRouter = express.Router();
 
-bookRouter.route('/Books')
-    .get(function(req, res){
-        Book.find({},function(err, books){    //book is an instance of our book schema; takes a json obj as a parameter
-            if(err)
-                console.log(err)
-            else
-                res.json(books);
-        });                               //when you go to /api/books we're gonna do a find and just take the results and pass that back to our browser
-    });
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
-//bookRouter.route('/Books/:bookId')
+bookRouter = require('./Routes/bookRoutes');
 
-app.use('/api', bookRouter); //a clean way to use our api routing
+
+
+app.use('/api/books/', bookRouter(Book)); //a clean way to use our api routing
+//app.use('/api/authors', authorRouter);
 
 app.get('/', function(req, res){
    res.send('welcome to my API!');
 });
+
+
+
 
 app.listen(port, function(){
     console.log('Gulp is running on PORT:'+ port);
