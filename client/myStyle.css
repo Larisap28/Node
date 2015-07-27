@@ -1,0 +1,51 @@
+table{
+    border: 1px solid black;
+    /*border-collapse: collapse;*/
+    width: 100%;
+
+}
+
+table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+
+#bold{
+    font-weight: bold;
+}
+
+form {
+
+    /*margin-top: 10%;*/
+    width: 400px;
+    padding: 1em;
+    border: 1px solid black;
+
+}
+
+label{
+    display: inline-block;
+    width: 90px;
+    text-align: left;
+}
+
+input  {
+
+    font: 1em sans-serif;
+    width: 300px;
+    border: 1px solid black;
+}
+
+
+.updateBtns {
+    margin-top: 20px;
+    padding-left: 90px; /* same size as the label elements */
+}
+button {
+    margin-left: .5em;
+}
+
+#createBtn , #saveBtn {
+    display: none;
+}
